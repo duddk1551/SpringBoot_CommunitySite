@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.MemberDao">
+	<select id="getMatchedOne" parameterType="map"
+		resultType="Member">
+		SELECT *
+		FROM member
+		WHERE loginId = #{loginId}
+		AND loginPw = #{loginPw}
+		<if test="where__checkDelMember == true">
+			AND delStatus != 1
+		</if>
+	</select>
+	
+	<select id="getOne" parameterType="long" resultType="Member">
+		SELECT *
+		FROM
+		member
+		WHERE id = #{loginedMemberId}
+	</select>
+	
+	<select id="doubleCheck" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM member
+		WHERE loginId = #{loginId} OR email = #{email}
+	</select>
+	
+	<insert id="addMember" parameterType="map">
+		INSERT INTO member
+		SET regDate = NOW(),
+		loginId = #{loginId},
+		loginPw = #{loginPw},
+		email = #{email},
+		`name` = #{name},
+		authKey = #{authKey}
+	</insert>
+	
+	<select id="getEmailMember" parameterType="map" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE email = #{email} AND authKey = #{authKey}
+	</select>
+	
+	<update id="updateAuthStatus" parameterType="map">
+		UPDATE member
+		SET emailAuthStatus = true
+		WHERE email = #{email}
+	</update>
+	
+	<select id="checkedPw" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM member
+		WHERE loginPw = #{loginPw}
+	</select>
+	
+	<update id="updateMember" parameterType="map">
+		UPDATE member
+		SET 
+		<if test = "exclude__pwData == true">
+		loginPw = #{newPw},
+		</if>
+		 `name` = #{name},
+		email = #{email}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="modifyNewPw" parameterType="map">
+		UPDATE member
+		SET loginPw = #{newPw}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delMember" parameterType="long">
+		UPDATE member
+		SET delStatus = true
+		WHERE id = #{id}
+	</update>
+	
+	<select id="findMemberInfo" parameterType="map" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE `name` = #{name} 
+		AND email = #{email}
+		<if test="where__findPw == true">
+			AND loginId = #{loginId}
+		</if>
+	</select>
+	
+</mapper>

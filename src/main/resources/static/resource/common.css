@@ -1,0 +1,246 @@
+/*  폰트 적용 */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+html {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 노말라이즈 */
+body, ul, li, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a:link {
+	color: #lightblue;
+}
+
+/* 라이브러리 */
+.con {
+	margin: 0 auto;
+}
+
+.img-box {
+	padding:30px;
+	display:inline-block;
+}
+
+.img-box>img {
+	width:100%;
+	display: block;
+}
+
+.row::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.cell {
+	float: left;
+	box-sizing: border-box;
+}
+
+.cell-right {
+	float: right;
+	box-sizing: border-box;
+}
+
+.margin-0-auto {
+	margin: 0 auto;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.line-height-0-ch-only {
+	line-height: 0;
+}
+
+.line-height-0-ch-only>* {
+	line-height: normal;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute-left {
+	position: absolute;
+	left: 0;
+}
+
+.absolute-right {
+	position: absolute;
+	right: 0;
+}
+
+.absolute-middle {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* 커스텀 */
+/* 반응형 레이아웃 */
+.con {
+	max-width: 1150px;
+}
+
+.con-min-width {
+	min-width: 320px;
+}
+
+html, body {
+	overflow-x: hidden;
+}
+
+.table-common table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table-common table th, .table-common table td {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.table-reply > div {
+	margin-top:10px;
+	padding-top:50px;
+	border:1px solid black;
+	width:100%;
+	text-align:center;
+}
+
+.table-reply > div div:first-child{
+	margin-top:10px;
+}
+
+.table-reply > div div.reply-table {
+	margin:10px;
+	margin-top:30px;
+	padding:10px;
+	border:1px solid rgba(0,0,0,0.3);
+}
+
+.table-reply > .reply-table > .replyList {
+	background-color:pink;
+}
+
+.table-reply div > .add-reply {
+	display:inline-block;
+}
+
+.table-reply div form > input[type="text"] {
+	margin-left:10px;
+	width:800px;
+	height:30px;
+}
+
+.table-common table input[type="text"], .table-common table input[type="password"]
+	{
+	width: 90%;
+	padding: 10px;
+	font-size: 1rem;
+}
+
+.table-common > .table-1 textarea {
+	width:90%;
+	padding: 10px;
+	font-size: 1rem;
+	height:100px;
+}
+
+.table-basic .list-1 {
+	margin-top:50px;
+	width:100%;
+	height:500px;
+	border:4px;
+	text-align:center;
+}
+
+.table-basic .list-1 > div:first-child {
+	text-align:left;
+	font-size:1.3rem;
+	font-weight:bold;
+}
+
+.list-top-bar {
+	text-align:right;
+	padding-bottom:10px;
+}
+
+.list-bt-bar {
+	text-align :center;
+	margin-top:20px;
+}
+
+.mypage-btn {
+	text-align:right;
+}
+
+.reply-table table {
+	width:100%
+}
+
+.reply-table tr .edit-mode-visible {
+	display:none;
+}
+
+.reply-table tr.edit-mode .edit-mode-visible {
+	display:block;
+}
+
+.reply-table tr.edit-mode .read-mode-visible {
+	display:none;
+}
+
+.reply-table tr.editable .edit-menu {
+	display:block;
+}
+
+.reply-table tr .edit-menu {
+	display:none;
+}
+
+.add-animation-item-now-deleting {
+	opacity:0;
+}
+
+.findInfo-box {
+	margin-top:50px;
+}
+
+.submit-box {
+	text-align:right;
+}
+
+.like-img-box .like_img {
+	width:40px;
+}
+
+#like-table {
+	margin-top:10px;
+	text-align:center;
+}
+
+.admin-memberList {
+	margin-top:30px;
+}
+
+#like_cnt {
+	margin-top:-20px;
+	margin-bottom:20px;
+	font-weight:bold;
+}

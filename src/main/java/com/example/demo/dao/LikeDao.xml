@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.LikeDao">
+
+	<select id="getLike" parameterType="map" resultType="Integer">
+		SELECT COUNT(*)
+		FROM liketo
+		WHERE articleId = #{id} AND memberId = #{memberId}
+	</select>
+	
+	<insert id="addLike" parameterType="map">
+		INSERT INTO liketo
+		SET regDate = NOW(),
+		articleId = #{id},
+		memberId = #{memberId}
+	</insert>
+	
+	<delete id="cancelLike" parameterType="map">
+		DELETE FROM liketo
+		WHERE articleId = #{id} 
+		AND memberId = #{memberId};
+	</delete>
+	
+</mapper>
