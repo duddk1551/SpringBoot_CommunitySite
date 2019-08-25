@@ -11,9 +11,9 @@
 
 ## function
 - CRUD
-- Image File upload
+- Image File upload,download
 - Admin page
-- Sort & Search
+- Post Sort & Search
 - Like function (Ajax)
 - Comment (Ajax)
 
