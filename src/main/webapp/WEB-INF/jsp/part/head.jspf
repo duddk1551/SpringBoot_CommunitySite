@@ -69,6 +69,8 @@
 				class="block btn-a">우수게시판</a></li>
 				<li class="cell margin-right-size-1"><a href="/article/list?boardId=1&cPage=1"
 				class="block btn-a">자유게시판</a></li>
+				<li class="cell margin-right-size-1"><a href="/chat/home"
+				class="block btn-a">자유채팅방</a></li>
 			</ul>
 		</nav>
 	</div>
