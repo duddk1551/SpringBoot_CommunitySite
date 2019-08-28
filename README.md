@@ -16,4 +16,4 @@
 - Post Sort & Search
 - Like function (Ajax)
 - Comment (Ajax)
-
+- Chatting (Ajax)
