@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Chat {
+public class ChatMessage {
 	private long id;
+	private long memberId;
 	private String writer;
 	private String body;
 }

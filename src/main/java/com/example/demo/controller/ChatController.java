@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.dto.Chat;
+import com.example.demo.dto.ChatMessage;
 import com.example.demo.service.MemberService;
 
 @Controller
 public class ChatController {
-	private List<Chat> messages;
+	private List<ChatMessage> messages;
 	
 	@Autowired
 	MemberService memberService;
@@ -29,22 +30,16 @@ public class ChatController {
 	
 	@RequestMapping("/chat/home")
 	public String showChatHome(Model model, HttpSession session) {
-		
-		String loginedMemberLoginId = (String)session.getAttribute("loginedMemberLoginId");
-		Map<String,Object> param = new HashMap<>();
-		param.put("writer", loginedMemberLoginId);
-		model.addAttribute("writer", param);
-		
 		return "chat/main";
 	}
 	
 	@RequestMapping("/chat/addMessage")
 	@ResponseBody
-	public Map<String,Object> addMessage(String writer, String body) {
+	public Map<String,Object> addMessage(String writer, String body, HttpServletRequest req) {
+		long loginedMemberId = (long)req.getAttribute("loginedMemberId");
 		long id = messages.size();
 		
-		System.out.println("채팅 파라미터 값!!! writer : " + writer + ", body : " + body);
-		Chat newMessage = new Chat(id,writer,body);
+		ChatMessage newMessage = new ChatMessage(id, loginedMemberId, writer, body);
 		messages.add(newMessage);
 		
 		Map<String,Object> rs = new HashMap<>();
@@ -58,13 +53,13 @@ public class ChatController {
 	
 	@RequestMapping("/chat/getAllMessages")
 	@ResponseBody
-	public List<Chat> getAllMessages() {
+	public List<ChatMessage> getAllMessages() {
 		return messages;
 	}
 	
 	@RequestMapping("/chat/getMessages")
 	@ResponseBody
-	public List<Chat> getMessages(int from) {
+	public List<ChatMessage> getMessages(int from) {
 		return messages.subList(from, messages.size());
 	}
 	

@@ -1,5 +1,3 @@
-var chatWriter = '${writer.writer}';
-
 function Chat_sendMessages() {
 	var message = $('#chat-room .input-box #text-input').val();
 	
@@ -10,7 +8,7 @@ function Chat_sendMessages() {
 		$('#chat-room .input-box #text-input').focus();
 		return false;
 	}
-	
+
 	$.post('./addMessage',{
 		writer : chatWriter,
 		body : message
@@ -35,27 +33,32 @@ function Chat_loadNewMessages(){
 			Chat_lastreceiveId = message.id;
 			Chat_drawNewMessage(message);
 		}
-		//setTimeout(Chat_loadNewMessages,1000);
+		setTimeout(Chat_loadNewMessages,1000);
 	},'json');
 }
 
 function Chat_drawNewMessage(message) {
 	var chatMessage = message.body;
 	var writer = message.writer;
-    
-	var whoClassName = 'mine';
+	var memberId = message.memberId;
 	
-	if ( writer != chatWriter ) {
-		whoClassName = 'other';
+	var whoClassName = 'ownBubble';
+	var writerName = 'own'
+	
+	if ( memberId != loginedMemberId ) {
+		whoClassName = 'otherBubble';
+		writerName = 'other'
 	}
 	
     var html = ``;
-    html += `<div class="chat-message ${whoClassName}">
-    	<section><i class="fa fa-user"></i></section>
-        <span>${writer}</span>
-        <div>${chatMessage}</div>
-    </div>
-    `;
+    html += `<div class="bubbleWrapper">
+    			<div class="inlineContainer ${writerName}">
+    				<section><i class="fa fa-user"></i></section>
+    				
+        			<div class="${whoClassName}">${chatMessage}</div>
+    			</div>
+    		</div>
+    		`;
     
     $('#chat-room .message-group:last-child').append(html);
     $('#chat-room .message-box').scrollTop(99999999999);
